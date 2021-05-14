@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -40,7 +41,8 @@ public class Order implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private Client client;
-	@OneToOne(cascade = CascadeType.ALL)
+	
+	@Embedded
 	private Address addressReceiver;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Phone phoneReceiver;

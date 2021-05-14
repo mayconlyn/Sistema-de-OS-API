@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -40,7 +41,7 @@ public class Client implements Serializable {
 	@OneToMany(mappedBy = "client")
 	private Set<Order> orders = new HashSet<>();
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@Embedded
 	private Address address;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Phone phone;
