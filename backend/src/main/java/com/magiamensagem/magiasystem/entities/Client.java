@@ -2,8 +2,8 @@ package com.magiamensagem.magiasystem.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,7 +18,6 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.magiamensagem.magiasystem.entities.enums.ClientStatus;
 
 @Entity
@@ -36,11 +35,10 @@ public class Client implements Serializable {
 	private Instant createdAt;
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant updatedAt;
-	
-	@JsonIgnore
+
 	@OneToMany(mappedBy = "client")
-	private Set<Order> orders = new HashSet<>();
-	
+	private List<Order> orders = new ArrayList<>();
+
 	@Embedded
 	private Address address;
 	@OneToOne(cascade = CascadeType.ALL)
@@ -49,11 +47,11 @@ public class Client implements Serializable {
 	public Client() {
 	}
 
-	public Client(Long id, String name, String cpf, ClientStatus clientStatus,Address address, Phone phone) {
+	public Client(Long id, String name, String cpf, ClientStatus clientStatus, Address address, Phone phone) {
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
-		this.clientStatus = (clientStatus==null) ? null : clientStatus.getCod();
+		this.clientStatus = (clientStatus == null) ? null : clientStatus.getCod();
 		this.address = address;
 		this.phone = phone;
 	}
@@ -102,7 +100,7 @@ public class Client implements Serializable {
 	public void prePersist() {
 		createdAt = Instant.now();
 	}
-	
+
 	@PreUpdate
 	public void preUpdate() {
 		updatedAt = Instant.now();
@@ -124,8 +122,12 @@ public class Client implements Serializable {
 		this.phone = phone;
 	}
 
-	public Set<Order> getOrders() {
+	public List<Order> getOrders() {
 		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 
 	@Override

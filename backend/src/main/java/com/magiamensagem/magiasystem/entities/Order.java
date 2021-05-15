@@ -37,7 +37,8 @@ public class Order implements Serializable {
 	private Instant createdAt;
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant updatedAt;
-
+	
+	
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private Client client;
