@@ -14,7 +14,7 @@ public enum PaymentType {
 		this.description = description;
 	}
 	
-	public int getCod() {
+	public Integer getCod() {
 		return cod;
 	}
 	

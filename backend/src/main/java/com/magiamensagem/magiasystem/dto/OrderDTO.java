@@ -18,6 +18,8 @@ public class OrderDTO implements Serializable{
 	private String complement;
 	private String numberPhone;
 	private Integer typePhone;
+	private Integer orderStatus;
+	private ClientDTO client;
 	private PaymentDTO payment;
 	private List<OrderItemDTO> itemsDto = new ArrayList<>();
 	
@@ -35,6 +37,8 @@ public class OrderDTO implements Serializable{
 		complement = entity.getAdressReceiver().getComplement();
 		numberPhone = entity.getPhoneReceiveir().getNumber();
 		typePhone = entity.getPhoneReceiveir().getType().getCod();
+		orderStatus = entity.getOrderStatus().getCod();
+		client = new ClientDTO(entity.getClient());
 		payment = new PaymentDTO(entity.getPay());
 		
 		entity.getOrderItems().forEach(x -> itemsDto.add(new OrderItemDTO(x)));
@@ -123,8 +127,20 @@ public class OrderDTO implements Serializable{
 	public List<OrderItemDTO> getItemsDto() {
 		return itemsDto;
 	}
-	
-	
 
+	public ClientDTO getClient() {
+		return client;
+	}
 
+	public void setClient(ClientDTO client) {
+		this.client = client;
+	}
+
+	public Integer getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(Integer orderStatus) {
+		this.orderStatus = orderStatus;
+	}
 }

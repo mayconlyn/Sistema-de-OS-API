@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -23,7 +24,7 @@ public class OrderItem implements Serializable {
 	private Integer quantity;
 	private Double price;
 	
-	@OneToMany(mappedBy = "orderItem")
+	@OneToMany(mappedBy = "orderItem", cascade = CascadeType.ALL)
 	private Set<Message> messages = new HashSet<>();
 
 	public OrderItem() {

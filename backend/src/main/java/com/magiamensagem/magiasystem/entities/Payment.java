@@ -109,7 +109,15 @@ public class Payment implements Serializable {
 	}
 
 	public void setPayType(PaymentType payType) {
-		this.payStatus = payType.getCod();
+		this.payType = payType.getCod();
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
 	@Override
