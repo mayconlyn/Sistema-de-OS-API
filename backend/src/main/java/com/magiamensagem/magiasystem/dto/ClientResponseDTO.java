@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.magiamensagem.magiasystem.entities.Client;
-import com.magiamensagem.magiasystem.entities.Order;
 
 public class ClientResponseDTO extends ClientDTO {
 	private static final long serialVersionUID = 1L;
@@ -17,10 +16,7 @@ public class ClientResponseDTO extends ClientDTO {
 
 	public ClientResponseDTO(Client entity) {
 		super(entity);
-		for (Order order : entity.getOrders()) {
-			orders.add(new OrderDTO(order));
-		}
-
+		entity.getOrders().forEach(x -> orders.add(new OrderDTO(x)));
 	}
 
 	public List<OrderDTO> getOrders() {

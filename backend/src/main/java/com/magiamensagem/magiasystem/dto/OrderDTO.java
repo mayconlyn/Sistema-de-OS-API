@@ -1,6 +1,8 @@
 package com.magiamensagem.magiasystem.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.magiamensagem.magiasystem.entities.Order;
 
@@ -17,6 +19,7 @@ public class OrderDTO implements Serializable{
 	private String numberPhone;
 	private Integer typePhone;
 	private PaymentDTO payment;
+	private List<OrderItemDTO> itemsDto = new ArrayList<>();
 	
 	public OrderDTO(){
 	}
@@ -33,6 +36,8 @@ public class OrderDTO implements Serializable{
 		numberPhone = entity.getPhoneReceiveir().getNumber();
 		typePhone = entity.getPhoneReceiveir().getType().getCod();
 		payment = new PaymentDTO(entity.getPay());
+		
+		entity.getOrderItems().forEach(x -> itemsDto.add(new OrderItemDTO(x)));
 	}
 
 	public Long getId() {
@@ -113,6 +118,10 @@ public class OrderDTO implements Serializable{
 
 	public void setPayment(PaymentDTO payment) {
 		this.payment = payment;
+	}
+
+	public List<OrderItemDTO> getItemsDto() {
+		return itemsDto;
 	}
 	
 	
