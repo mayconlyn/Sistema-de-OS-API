@@ -16,6 +16,7 @@ public class OrderDTO implements Serializable{
 	private String complement;
 	private String numberPhone;
 	private Integer typePhone;
+	private PaymentDTO payment;
 	
 	public OrderDTO(){
 	}
@@ -31,6 +32,7 @@ public class OrderDTO implements Serializable{
 		complement = entity.getAdressReceiver().getComplement();
 		numberPhone = entity.getPhoneReceiveir().getNumber();
 		typePhone = entity.getPhoneReceiveir().getType().getCod();
+		payment = new PaymentDTO(entity.getPay());
 	}
 
 	public Long getId() {
@@ -103,6 +105,14 @@ public class OrderDTO implements Serializable{
 
 	public void setTypePhone(Integer typePhone) {
 		this.typePhone = typePhone;
+	}
+
+	public PaymentDTO getPayment() {
+		return payment;
+	}
+
+	public void setPayment(PaymentDTO payment) {
+		this.payment = payment;
 	}
 	
 	
